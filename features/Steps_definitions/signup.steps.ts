@@ -2,20 +2,21 @@ const {Given,When,Then} = require('@cucumber/cucumber')
 const { chromium } = require("@playwright/test");
 const { test, expect, playwright } = require("@playwright/test");
 import {Page} from '@playwright/test'
+const { faker } = require('@faker-js/faker');
 
-// type userDetails = {
-//   firstname: string,
-//   lastname: string,
-//   username: any,
-//   password:any
-// };
+type userDetails = {
+  firstname: string,
+  lastname: string,
+  username: any,
+  password:any
+};
 
-// const newUser: userDetails = {
-//   firstname: faker.person.firstName(),
-//   lastname: faker.person.lastName(),
-//   username: faker.internet.displayName(),
-//   password:faker.internet.password(),
-// }
+const newUser: userDetails = {
+  firstname: faker.person.firstName(),
+  lastname: faker.person.lastName(),
+  username: faker.internet.displayName(),
+  password:faker.internet.password(),
+}
 
 
 let page:Page
@@ -48,42 +49,42 @@ When('I click on the Register button', {timeout:5000}, async () => {
 });
 
 
-// When('I enter the firstname {string} correctly', {timeout:5000}, async (firstName) => {
-//     const firstName_field = page.locator('[id="mat-input-2"]')
-//   //await firstName_field.fill(newUser.firstname)
-//   await firstName_field.fill('Father')
-// });
+When('I enter the firstname {string} correctly', {timeout:5000}, async (firstName:string) => {
+    const firstName_field = page.locator('[id="mat-input-2"]')
+  await firstName_field.fill(newUser.firstname)
+  //await firstName_field.fill('Father')
+});
 
-// When('I enter the lastname {string} correctly', {timeout:5000}, async (lastName) => {
-//   const lastName_field = page.locator('[id="mat-input-3"]')
-// //await firstName_field.fill(newUser.lastname)
-// await lastName_field.fill('Mother')
-// });
+When('I enter the lastname {string} correctly', {timeout:5000}, async (lastName:string) => {
+  const lastName_field = page.locator('[id="mat-input-3"]')
+await lastName_field.fill(newUser.lastname)
+//await lastName_field.fill('Mother')
+});
 
-// When('I enter the username {string} correctly', {timeout:5000}, async (userName) => {
-//   const userName_field = page.locator('[id="mat-input-4"]')
-// //await firstName_field.fill(newUser.username)
-// await userName_field.fill('uncle')
-// });
+When('I enter the username {string} correctly', {timeout:5000}, async (userName:any) => {
+  const userName_field = page.locator('[id="mat-input-4"]')
+//await firstName_field.fill(newUser.username)
+await userName_field.fill(newUser.username)
+});
 
-// When('I enter the password {string} correctly', {timeout:5000}, async (password) => {
-//   const password_field = page.locator('[id="mat-input-5"]')
-// //await firstName_field.fill(newUser.password)
-// await password_field.fill('Sister')
-// });
+When('I enter the password {string} correctly', {timeout:5000}, async (password:any) => {
+  const password_field = page.locator('[id="mat-input-5"]')
+await password_field.fill(newUser.password)
+//await password_field.fill('Sister')
+});
 
-// When('I re-enter the password {string} correctly', {timeout:5000}, async (password) => {
-//   const verifyPassword_field = page.locator('[id="mat-input-6"]')
-// //await firstName_field.fill(newUser.password)
-// await verifyPassword_field.fill('aunty')
-// });
+When('I re-enter the password {string} correctly', {timeout:5000}, async (password:any) => {
+  const verifyPassword_field = page.locator('[id="mat-input-6"]')
+//await firstName_field.fill(newUser.password)
+await verifyPassword_field.fill(newUser.password)
+});
 
-// When('I click on the radio button ', {timeout:5000}, async () => {
-//   const male_radio_button = page.locator('[id="mat-radio-2-input"]')
-//   await male_radio_button.check()
-// });
+When('I click on the radio button', {timeout:5000}, async () => {
+  const male_radio_button = page.locator('[id="mat-radio-2-input"]')
+  await male_radio_button.check()
+});
 
-// Then('my account should be created successfully',{timeout:5000},async()=>{
-//   const registerButton = page.getByRole('button',{name: ' Register '})
-//   await registerButton.click()
-// })
+Then('my account should be created successfully',{timeout:5000},async()=>{
+  const registerButton = page.getByRole('button',{name: ' Register '})
+  await registerButton.click()
+})
