@@ -54,6 +54,8 @@ class RegisterFeatures {
   async fill_password(password:any){
     const password_field = this.page.locator('[id="mat-input-5"]')
   await password_field.fill(password)
+  await this.page.locator('mat-icon[matSuffix=""][data-mat-icon-type="font"]:has-text("visibility_off")').nth(0).click()
+  console.log('The password visibility icon has been clicked')
 
   }
 
